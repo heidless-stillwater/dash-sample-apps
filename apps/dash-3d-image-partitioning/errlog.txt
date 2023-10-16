@@ -1,0 +1,81 @@
+  error: subprocess-exited-with-error
+  
+  × Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [63 lines of output]
+      Running from numpy source directory.
+      <string>:461: UserWarning: Unrecognized setuptools command, proceeding with generating Cython sources and expanding templates
+      /tmp/pip-install-p3cof4s_/numpy_e81729be92a743b5bf81fedfa047e929/tools/cythonize.py:75: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+        required_version = LooseVersion('0.29.14')
+      /tmp/pip-install-p3cof4s_/numpy_e81729be92a743b5bf81fedfa047e929/tools/cythonize.py:77: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+        if LooseVersion(cython_version) < required_version:
+      performance hint: _generator.pyx:811:41: Exception check will always require the GIL to be acquired. Possible solutions:
+          1. Declare the function as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+          2. Use an 'int' return type on the function to allow an error code to be returned.
+      performance hint: _generator.pyx:840:45: Exception check will always require the GIL to be acquired. Possible solutions:
+          1. Declare the function as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+          2. Use an 'int' return type on the function to allow an error code to be returned.
+      
+      Error compiling Cython file:
+      ------------------------------------------------------------
+      ...
+          def __init__(self, seed=None):
+              BitGenerator.__init__(self, seed)
+              self.rng_state.pcg_state = &self.pcg64_random_state
+      
+              self._bitgen.state = <void *>&self.rng_state
+              self._bitgen.next_uint64 = &pcg64_uint64
+                                         ^
+      ------------------------------------------------------------
+      
+      _pcg64.pyx:113:35: Cannot assign type 'uint64_t (*)(void *) except? -1 nogil' to 'uint64_t (*)(void *) noexcept nogil'. Exception values are incompatible. Suggest adding 'noexcept' to type 'uint64_t (void *) except? -1 nogil'.
+      Processing numpy/random/_bounded_integers.pxd.in
+      Processing numpy/random/mtrand.pyx
+      Processing numpy/random/_bit_generator.pyx
+      Processing numpy/random/_generator.pyx
+      Processing numpy/random/_pcg64.pyx
+      Traceback (most recent call last):
+        File "/tmp/pip-install-p3cof4s_/numpy_e81729be92a743b5bf81fedfa047e929/tools/cythonize.py", line 238, in <module>
+          main()
+        File "/tmp/pip-install-p3cof4s_/numpy_e81729be92a743b5bf81fedfa047e929/tools/cythonize.py", line 234, in main
+          find_process_files(root_dir)
+        File "/tmp/pip-install-p3cof4s_/numpy_e81729be92a743b5bf81fedfa047e929/tools/cythonize.py", line 225, in find_process_files
+          process(root_dir, fromfile, tofile, function, hash_db)
+        File "/tmp/pip-install-p3cof4s_/numpy_e81729be92a743b5bf81fedfa047e929/tools/cythonize.py", line 191, in process
+          processor_function(fromfile, tofile)
+        File "/tmp/pip-install-p3cof4s_/numpy_e81729be92a743b5bf81fedfa047e929/tools/cythonize.py", line 80, in process_pyx
+          subprocess.check_call(
+        File "/usr/lib/python3.10/subprocess.py", line 369, in check_call
+          raise CalledProcessError(retcode, cmd)
+      subprocess.CalledProcessError: Command '['/home/heidless/dash-sample-apps/apps/dash-3d-image-partitioning/venv/bin/python', '-m', 'cython', '-3', '--fast-fail', '-o', '_pcg64.c', '_pcg64.pyx']' returned non-zero exit status 1.
+      Cythonizing sources
+      Traceback (most recent call last):
+        File "/home/heidless/dash-sample-apps/apps/dash-3d-image-partitioning/venv/lib/python3.10/site-packages/pip/_vendor/pep517/in_process/_in_process.py", line 363, in <module>
+          main()
+        File "/home/heidless/dash-sample-apps/apps/dash-3d-image-partitioning/venv/lib/python3.10/site-packages/pip/_vendor/pep517/in_process/_in_process.py", line 345, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+        File "/home/heidless/dash-sample-apps/apps/dash-3d-image-partitioning/venv/lib/python3.10/site-packages/pip/_vendor/pep517/in_process/_in_process.py", line 164, in prepare_metadata_for_build_wheel
+          return hook(metadata_directory, config_settings)
+        File "/tmp/pip-build-env-w8ikpqf2/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 396, in prepare_metadata_for_build_wheel
+          self.run_setup()
+        File "/tmp/pip-build-env-w8ikpqf2/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 507, in run_setup
+          super(_BuildMetaLegacyBackend, self).run_setup(setup_script=setup_script)
+        File "/tmp/pip-build-env-w8ikpqf2/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 341, in run_setup
+          exec(code, locals())
+        File "<string>", line 488, in <module>
+        File "<string>", line 469, in setup_package
+        File "<string>", line 275, in generate_cython
+      RuntimeError: Running cythonize failed!
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
+
+[notice] A new release of pip available: 22.2.2 -> 23.2.1
+[notice] To update, run: pip install --upgrade pip
